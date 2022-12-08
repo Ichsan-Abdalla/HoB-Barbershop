@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
+  <title>HoB Barbershop</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="manifest" href="manifest.json">
+	<link rel="icon" type="image/png" href="logo.png">
+</head>
+<body class="a">
+  <div id="iNstall" class="install">
+    <img src="logo.png">
+    <button id="iNstallbtn">Loading...</button>
+  </div>
+  
+  <div class="header">
+    <h1>HOUSE OF BRENG</h1>
+  </div>
+  
+  <div class="container">
+    <div id="kOtak" class="kotak a">
+		<div id="bEranda" class="beranda a">beranda</div>
+		<div id="iNfo" class="info b">info</div>
+		<div id="sTatus" class="status b">status<br><p id="hAsil"></p><br><button id="mUlai">mulai</button> <button id="sTop">stop</button><br>
+		</div>
+		</div>
+  </div>
+  
+  <div class="footer" id="fOoter">
+    <input type="radio" id="beranda" name="footer" checked><label for="beranda">Beranda</label><input type="radio" id="info" name="footer"><label for="info">Info</label><input type="radio" id="status" name="footer"><label for="status">Status</label>
+  </div>
+
+<script src="silent.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

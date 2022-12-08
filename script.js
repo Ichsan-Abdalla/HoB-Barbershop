@@ -12,8 +12,12 @@ if(window.matchMedia('(display-mode: standalone)').matches != true){
   });
 }
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
+if ('getInstalledRelatedApps' in navigator) {
+  navigator.getInstalledRelatedApps().then(e=>{
+    if(e[0] != 'undefined'){
+      iNstallbtn.textContent = 'Buka Aplikasi';
+    }
+  });
 }
 
 window.addEventListener('offline', ()=>{
@@ -28,8 +32,6 @@ window.addEventListener("beforeinstallprompt", e=>{
     iNstallbtn.textContent = '...';
   };
 });
-
-iNstallbtn.textContent = 'Buka Aplikasi';
 
 window.addEventListener('appinstalled', () => {
   iNstallbtn.textContent = 'Menginstal...';

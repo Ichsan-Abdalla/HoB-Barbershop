@@ -16,10 +16,6 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
 }
 
-setTimeout(()=>{
-iNstallbtn.textContent = 'Buka Aplikasi';
-},7000);
-
 window.addEventListener('offline', ()=>{
   alert('Offline');
   sTop.click();
@@ -32,6 +28,8 @@ window.addEventListener("beforeinstallprompt", e=>{
     iNstallbtn.textContent = '...';
   };
 });
+
+iNstallbtn.textContent = 'Buka Aplikasi';
 
 window.addEventListener('appinstalled', () => {
   iNstallbtn.textContent = 'Menginstal...';

@@ -21,13 +21,14 @@
 }
 
 body{
-	height:100vmax;
+	width:100vw;
+	height:100vh;
 	background: linear-gradient(
 		to top right,
-		/*#65dfc9,*/
-		deeppink,
-		darkblue
-		/*#6cdbeb*/
+		
+		red 30%,white,
+		royalblue 70%
+		
 	);
 	display:flex;
 	flex-direction: column;
@@ -48,18 +49,38 @@ div.install{
 .install img{
   width: 50vw;
   margin-bottom:10vw;
+  -webkit-filter:opacity(.5);
 }
 
 .install button{
   width:30vw;
   padding: 2vw;
   border-radius: 1em 1em 1em 1em;
-  border:none;
-  background:;
+  border:2px solid black;
+  background:royalblue;
   color:white;
   box-shadow: 0 .2em 0 rgba(0,0,0,0.3);
   font-weight: bold;
-  background:darkblue;
+}
+
+.install button.a:after{
+  content: "";
+  -webkit-animation: loading 1s ease infinite;
+}
+
+@-webkit-keyframes loading{
+  0%{
+    content: "";
+  }
+  33%{
+    content: ".";
+  }
+  63%{
+    content: "..";
+  }
+  100%{
+    content: "...";
+  }
 }
 
 .install,.header{
@@ -71,12 +92,14 @@ div.install{
 	background: linear-gradient(
 		to bottom right,
 		rgba(255,255,255,.7),
-		rgba(255,255,255,.3)
+		rgba(255,255,255,.4)
 	);
 	border-radius:1em;
 	backdrop-filter: blur(2em); /*  */
-	box-shadow: inset 10.5em -10em 5em -11.5em rgba(255,20,147,.7);
+	/*box-shadow: inset 10.5em -10em 5em -11.5em rgba(255,20,147,.7);*/
+	
 	display: flex;
+	border:2px solid black;
 }
 
 .header h1{
@@ -89,7 +112,7 @@ div.install{
   flex:14;
   overflow: hidden;
   position: relative;
- margin-top:5vw;margin-bottom:7vw;
+ margin-top:5vw;margin-bottom:5vw;
 }
 
 .kotak{
@@ -119,25 +142,25 @@ div.install{
 	background: linear-gradient(
 		to bottom right,
 		rgba(255,255,255,.7),
-		rgba(255,255,255,.3)
+		rgba(255,255,255,.4)
 	);
 	border-radius:1em;
 	/* z-index: 2; */
 	backdrop-filter: blur(2em); /*  */
 	
-	box-shadow: inset 10.5em -10em 5em -11.5em rgba(255,20,147,.7); 
-	width:86vw;
+/*	box-shadow: inset 10.5em -10em 5em -11.5em rgba(255,20,147,.7); */
+	width:100vw;
 	top:0;bottom:0;
-	margin-right:14vw;
-	
+	margin-right:10vw;
+	border:2px solid black;
 }
 
 .beranda{
-  margin-left:5vw;
+  margin-left:3vw;
 }
 
 div.status{
-  margin-right: 5vw;
+  margin-right: 3vw;
 }
 
 .footer{
@@ -150,6 +173,8 @@ div.status{
 }
 
 .footer label{
+  display: inline-block;
+  width:21vw;
   font-weight: bold;
   font-size: 4vw;
   color:black;
@@ -157,18 +182,22 @@ div.status{
 	backdrop-filter: blur(2em); 
 /*	box-shadow: inset 10.5em -10em 5em -11.5em rgba(255,20,147,.7); */
   padding: 2vw;
+  border-top:2px solid black;
+  border-bottom:2px solid black;
 }
 
 .footer label:nth-child(2){
   border-radius: 1em 0 0 1em;
+  border-left:2px solid black;
 }
 .footer label:last-child{
   border-radius: 0 1em 1em 0;
+  border-right:2px solid black;
 }
 
 #beranda:checked ~ label:nth-child(2), #info:checked ~ label:nth-child(4), #status:checked ~ label:last-child{
   color:white;
-  background: darkblue;
+  background: royalblue;
 }
 
 

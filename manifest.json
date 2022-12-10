@@ -7,8 +7,8 @@
 	"start_url": ".",
 	"scope": ".",
 	"display": "standalone",
-	"background_color": "grey",
-	"theme_color": "black",
+	"background_color": "white",
+	"theme_color": "#4169E1",
 	"icons": [
 		{
 			"src": "logo.png",
@@ -22,5 +22,9 @@
 		"gecko": {
 			"id": "addon@example.com"
 		}
-	}
+	},
+	"related_applications": [{
+    "platform": "webapp",
+    "url": "manifest.json"
+  }]
 }

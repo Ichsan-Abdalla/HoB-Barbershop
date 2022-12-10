@@ -14,7 +14,8 @@ if(window.matchMedia('(display-mode: standalone)').matches != true){
 
 if ('getInstalledRelatedApps' in navigator) {
   navigator.getInstalledRelatedApps().then(e=>{
-    if(e[0] != 'undefined'){
+    if(e[0].platform == 'webapp'){
+      iNstallbtn.classList.remove('a');
       iNstallbtn.textContent = 'Buka Aplikasi';
     }
   });
@@ -26,18 +27,39 @@ window.addEventListener('offline', ()=>{
 });
 
 window.addEventListener("beforeinstallprompt", e=>{
+  iNstallbtn.classList.remove('a');
   iNstallbtn.textContent = 'Instal Sekarang';
-  iNstallbtn.onclick = _=>{
+  iNstallbtn.onclick = x=>{
+    if(iNstallbtn.textContent != 'Instal Sekarang'){
+      return;
+    }
     e.prompt();
     iNstallbtn.textContent = '...';
   };
 });
 
+function installed(){
+  let a = setInterval(_=>{
+    navigator.getInstalledRelatedApps().then(e=>{
+      if(e[0].platform == 'webapp'){
+        iNstallbtn.classList.remove('a');
+        iNstallbtn.textContent = 'Buka Aplikasi';
+        alert('Aplikasi berhasil di instal ');
+        return b();
+      }
+    });
+  },300);
+  
+  function b(){
+    clearInterval(a);
+    a = undefined;
+  }
+}
+
 window.addEventListener('appinstalled', () => {
-  iNstallbtn.textContent = 'Menginstal...';
-  setTimeout(_=>{
-    iNstallbtn.textContent = 'Buka Aplikasi';
-  },10000);
+  iNstallbtn.textContent = 'Menginstal';
+  iNstallbtn.classList.add('a');
+  installed();
 });
 
 iNstallbtn.addEventListener('click', e=>{
@@ -65,6 +87,11 @@ fOoter.onclick = e=>{
       kOtak.classList.replace('a','c');
     }else{
       kOtak.classList.replace('b','c');
+    }
+    
+    if(kOtak.classList.contains('x') == false && kOtak.classList.contains('y') == false){
+      kOtak.classList.add('x');
+      mulai();
     }
   }
 };
@@ -95,11 +122,13 @@ function mulai() {
     w.onmessage = e=>{
       clearTimeout(b);
       hAsil.textContent = 'hasil : '+e.data;
-      navigator.serviceWorker.ready.then(reg=>{
-        setTimeout(()=>{
-        reg.showNotification('HoB Barbershop', {body: 'x', tag: 'a',icon: 'logo.png', renotify: true});
-        }, silent.duration*1000+300);
-      });
+      if(kOtak.classList.contains('x') == false){
+        navigator.serviceWorker.ready.then(reg=>{
+          setTimeout(()=>{
+          reg.showNotification('HoB Barbershop', {body: 'x', tag: 'a',icon: 'logo.png', renotify: true});
+          }, silent.duration*1000+300);
+        });
+      }
     };
   }else{
     hAsil.textContent = "Sorry! No Web Worker support.";
@@ -107,7 +136,7 @@ function mulai() {
   
 }
 
-function stop(e) { 
+function stop(e,x) { 
   if(e == null){
     clearTimeout(a);
     clearTimeout(b);
@@ -116,34 +145,42 @@ function stop(e) {
   }
   w.terminate();
   w = undefined;
-  
+  if(x == 'x'){
+    kOtak.classList.replace('y','x');
+    mulai();
+  }
 }
 
 mUlai.onclick = ()=>{
   if(mUlai.classList.contains('a') == true){
     return;
   }
+  
+  if(kOtak.classList.contains('x') == true){
+    kOtak.classList.replace('x','y');
+    stop(null);
+    return mUlai.click();
+  }
+  
   Notification.requestPermission().then(e=>{
-    if(e == 'granted'){
-      if(navigator.onLine != true){
-        alert('Hubungkan ke Internet !');
-        return;
-      }
-      window.history.pushState(0,null,'');
-      mUlai.classList.add('a');
-      mulai();
-    }else{
+    if(e != 'granted'){
       alert('Dapatkan pemberitahuan saat ada pembaruan Status.\nIzinkan akses notifikasi!');
       sTop.click();
+      return;
     }
   });
+  
+  window.history.pushState(0,null,'');
+  mUlai.classList.add('a');
+  mulai();
+  
 };
 
 sTop.onclick = ()=>{
   if(mUlai.classList.contains('a') != true){
     return;
   }
-  stop(null);
+  stop(null,'x');
   mUlai.classList.remove('a');
   history.go(-1);
 };

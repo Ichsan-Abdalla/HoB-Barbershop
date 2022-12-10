@@ -16,7 +16,7 @@ self.addEventListener('activate', e => {
 			return Promise.all(keys 
 				.filter(key => key !== $versi)
 				.map(key => caches.delete(key))
-			);
+			).then(_=>{window.location.reloa();});
 		})
 });
 

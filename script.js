@@ -168,11 +168,10 @@ mUlai.onclick = ()=>{
       sTop.click();
       return;
     }
+    window.history.pushState(0,null,'');
+    mUlai.classList.add('a');
+    mulai();
   });
-  
-  window.history.pushState(0,null,'');
-  mUlai.classList.add('a');
-  mulai();
   
 };
 

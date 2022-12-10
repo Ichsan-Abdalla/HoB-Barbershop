@@ -42,9 +42,6 @@ function installed(){
   let a = setInterval(_=>{
     navigator.getInstalledRelatedApps().then(e=>{
       if(e[0].platform == 'webapp'){
-        iNstallbtn.classList.remove('a');
-        iNstallbtn.textContent = 'Buka Aplikasi';
-        alert('Aplikasi berhasil di instal ');
         return b();
       }
     });
@@ -53,6 +50,9 @@ function installed(){
   function b(){
     clearInterval(a);
     a = undefined;
+    iNstallbtn.classList.remove('a');
+    iNstallbtn.textContent = 'Buka Aplikasi';
+    alert('Aplikasi berhasil di instal ');
   }
 }
 

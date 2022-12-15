@@ -2,7 +2,6 @@
 	"author": "Ichsan Abdalla",
 	"name": "HoB Barbershop",
 	"short_name": "HoB Barbershop",
-	"description": "Simple template for a chrome WebAPK.",
 	"orientation": "portrait",
 	"start_url": ".",
 	"scope": ".",
@@ -11,18 +10,12 @@
 	"theme_color": "#4169E1",
 	"icons": [
 		{
-			"src": "logo.png",
+			"src": "icon.png",
 			"sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
 			"type": "image/png"
 		}
 	],
 	"manifest_version": 2,
-	"version": "0.1",
-	"applications": {
-		"gecko": {
-			"id": "addon@example.com"
-		}
-	},
 	"related_applications": [{
     "platform": "webapp",
     "url": "manifest.json"

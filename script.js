@@ -9,9 +9,6 @@ if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.
   window.addEventListener('popstate', ()=>{
     if(pOto.classList.contains('a') == true){
       document.querySelector('.poto').classList.remove('a');
-    }else if(mUlai.textContent == 'Matikan Notifikasi'){
-      alert('Saat notifikasi aktif, disarankan untuk tidak menutup aplikasi ini !');
-      window.history.pushState(0,null,'');
     }
   });
 }
@@ -24,15 +21,6 @@ if ('getInstalledRelatedApps' in navigator) {
     }
   });
 }
-
-window.addEventListener('offline', ()=>{
-  alert('Offline');
-  stopNotif();
-});
-
-window.addEventListener('online', ()=>{
-  location.href = '.';
-});
 
 window.addEventListener("beforeinstallprompt", e=>{
   iNstallbtn.classList.remove('a');
@@ -100,70 +88,74 @@ fOoter.onclick = e=>{
     if(kOtak.classList.contains('x') == false && kOtak.classList.contains('y') == false){
       kOtak.classList.add('x');
       tAnggal.textContent = today();
-      mulai();
+      uPdate.click();
     }
   }
 };
 
-
 let w;
 let a;
-let b;
 
-function mulai() {
-  silent.volume = .01;
-  silent.play();
-  
-  a = setTimeout(()=>{stop(undefined);mulai();}, 60000*4);
-  
+function update(){
   if(typeof(Worker) != 'undefined') {
     if(typeof(w) == 'undefined') {
-      w = new Worker("w.js");
+      if(navigator.onLine != true){
+        alert('Hubungkan ke Internet!');
+        uPdate.classList.remove('a');
+        uPdate.textContent = 'Perbarui';
+        return;
+      }
+      
+      w = new Worker("w.js?v="+Math.random());
+      a = setTimeout(()=>{
+            w = undefined;
+            alert('Gagal melakukan pembaruan...\nPeriksa koneksi Internet anda!');
+          uPdate.classList.remove('a');
+          uPdate.textContent = 'Perbarui';
+        },20000);
     }else{
       return;
     }
-    
-    
-    b = setTimeout(()=>{
-          alert('Koneksi terputus\nMemuat ulang...');
-          location.href = '.';
-        },15000);
         
-    w.onmessage = e=>{
-      clearTimeout(b);b = undefined;
-      silent.volume = 0;
+    w.onmessage = e=>{if(typeof(e.data) != 'undefined'){
+      
+      clearTimeout(a);a = undefined;
+      w = undefined;
+      uPdate.classList.remove('a');
+      uPdate.textContent = 'Perbarui';
       if(e.data.tutup[0] == 1){
         libur(1,1,e.data.tutup[1]);
       }else{
+        if(tutup.classList.contains('a') == true){
+          tutup.classList.remove('a');
+        }
         libur(e.data.kapster[0],e.data.kapster[1]);
         situasi0.textContent = 'Jumlah orang yg potong rambut: '+e.data.situasi[0];
         situasi1.textContent = 'Jumlah orang yg menunggu giliran: '+e.data.situasi[1];
       }
       
-      if(kOtak.classList.contains('x') == false){
-        if(situasi0.textContent != xsituasi0.textContent || situasi1.textContent != xsituasi1.textContent || mUlai.classList.contains('a') == true){
-          xsituasi0.textContent = situasi0.textContent;
-          xsituasi1.textContent = situasi1.textContent;
-          if(mUlai.classList.contains('a') == true){
-            mUlai.classList.remove('a');
-          }
-        
-           if(mUlai.textContent == 'Notif On'){
-            navigator.serviceWorker.ready.then(reg=>{
-             // setTimeout(()=>{
-              reg.showNotification(situasi0.textContent, {body: situasi1.textContent, tag: 'a',icon: 'icon.png', renotify: true});
-             // }, silent.duration*1000+300);
-            });
-          }
-        }
-      
-      }
-    };
+      jam.textContent = '*Data ini diperbarui pada pukul '+new Date().getHours()+':'+new Date().getMinutes()+'WIB';
+    }};
+  
   }else{
     hAsil.textContent = "Sorry! No Web Worker support.";
   }
-  
 }
+
+uPdate.onclick = ()=>{
+  if(uPdate.textContent != 'Perbarui'){
+    return;
+  }else if(jam.textContent == '*Data ini diperbarui pada pukul '+new Date().getHours()+':'+new Date().getMinutes()+'WIB'){
+    alert('Pembaruan baru saja dilakukan.\nTunggu selama 1 menit.');
+    return;
+  }
+  if(kOtak.classList.contains('x') == true){
+    kOtak.classList.replace('x','y');
+  }
+  uPdate.textContent = 'Memperbarui';
+  uPdate.classList.add('a');
+  update();
+};
 
 function libur(a,b,c){
   if(a == 0 && b == 0){
@@ -181,76 +173,33 @@ function libur(a,b,c){
   }else if(x[0].classList.contains('a') == false && x[1].classList.contains('a') == false){ 
     x[0].classList.add('a');
     x[1].classList.add('a');
+    if(tutup.classList.contains('a') == false){
+      tutup.classList.add('a');
+    }
     if(!c || c == ''){
-      document.querySelector('.situasi').innerHTML = 'TUTUP';
+      document.querySelector('#tutup p').innerHTML = '<h2>TUTUP<h2/>';
     }else{
-      document.querySelector('.situasi').innerHTML = c;
+      document.querySelector('#tutup p').textContent = c;
     }
+  
   }
 }
 
-function stop(e,x) { 
-  if(e == null){
-    clearTimeout(a);
-    clearTimeout(b);
-    a = e;
-    b = e;
-  }
-  w.terminate();
-  w = undefined;
-  if(x == 'x'){
-    kOtak.classList.replace('y','x');
-    mulai();
-  }
-}
-
-mUlai.onclick = ()=>{
-  if(mUlai.textContent == 'Notif On'){
-    stopNotif();
-    return;
-  }
-  
-  if(kOtak.classList.contains('x') == true){
-    silent.volume = 0;
-    stop(null);
-    kOtak.classList.replace('x','y');
-    return mUlai.click();
-  }
-  
-  Notification.requestPermission().then(e=>{
-    if(e != 'granted'){
-      alert('Dapatkan pemberitahuan saat ada pembaruan Status.\nIzinkan akses notifikasi!');
-      stopNotif();
-      return;
-    }
-    window.history.pushState(0,null,'');
-    mUlai.textContent = 'Notif On';
-    mUlai.style.color = 'cyan';
-    if(mUlai.classList.contains('a') == false){
-      mUlai.classList.add('a');
-    }
-    mulai();
-  });
-  
-};
-
-function stopNotif(){
-  if(mUlai.textContent != 'Notif On'){
-    return;
-  }
-  stop(null,'x');
-  mUlai.textContent = 'Notif Off';
-  mUlai.style.color = 'white';
-  history.go(-1);
-}
-
-document.querySelector('.div2').onclick = e=>{
+function poto(e){
   if(!e.target.src){
     return;
   }
   document.querySelector('.poto img').src = e.target.src;
   pOto.classList.add('a');
   window.history.pushState(0,null,'');
+}
+
+document.querySelector('.div2').onclick = e=>{
+  poto(e);
+};
+
+document.querySelector('.kapster').onclick = e=>{
+  poto(e);
 };
 
 pOto.onclick = ()=>{
@@ -258,12 +207,20 @@ pOto.onclick = ()=>{
 }
 
 function today(){
-  const arrHari = ['Senin','Selasa','Rabu','Kamis',"jum'at",'Sabtu','Minggu'];
+  const arrHari = ['Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu','Minggu'];
       arrBulan = ['Januari', 'Februari', 'Maret', 'April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
       
   return arrHari[new Date().getDay()-1]+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
   return arrHari[new Date().getDay()-1]+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
 }
+
+window.addEventListener('offline', ()=>{
+  w = undefined;
+});
+
+window.addEventListener('online', ()=>{
+  uPdate.click();
+});
   
  
 

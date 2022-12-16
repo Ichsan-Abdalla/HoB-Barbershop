@@ -10,14 +10,14 @@
 
 @font-face {
     font-family: 'poppins';
-    src: url('fonts/Poppins-Regular.woff') format('woff');
+    src: url('Poppins-Regular.woff') format('woff');
 }
 
 @font-face {
     font-family: 'mouw';
     font-style: normal;
     font-weight: normal;
-    src: url(fonts/Mouw-PK9er.woff) format(woff);
+    src: url(Mouw-PK9er.woff) format(woff);
 }
 
 body{
@@ -362,7 +362,8 @@ div.status{
   background: rgba(255,255,255,.8);
   text-align: center;
   margin: auto;
-  border: 2px solid royalblue;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
   padding:1vw 0;
   color:red;
 }
@@ -389,7 +390,7 @@ div.status{
   margin:auto;
   text-align: center;
   position: relative;
-  bottom:2rem;
+  bottom:15vw;
 }
 
 span.situasi{
@@ -398,7 +399,8 @@ span.situasi{
   font-size: 3vw;
   font-weight: bold;
   background: rgba(255,255,255,.5);
-  color:;
+  position: relative;
+  overflow: hidden;
   border-top:2px solid red;
   border-right:2px solid red;
   border-bottom:2px solid royalblue;
@@ -406,21 +408,31 @@ span.situasi{
   border-radius: 1em;
   padding:3vw 2vw;
 }
-
-.notif{
-  display:flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.notif button{
-  font-size: 1rem;
-  background:#3C4151;
+.divSituasi button{
+  margin-top: 15vw;
+  padding:2vw 4vw;
+  background: royalblue;
   color: white;
-  padding:1vw;
+  border-radius: 1em 1em 1em 1em;
 }
 
-#xsituasi0,#xsituasi1{
+.divSituasi button.a:after{
+  content:"";
+  -webkit-animation: loading 2s ease infinite;
+}
+
+#tutup{
   display: none;
+}
+#tutup.a{
+  display: flex;
+  position: absolute;
+  top:0;bottom:0;
+  left:0;right:0;
+  background: white;
+}
+.tutup p{
+  margin: auto;
 }
 
 .info{

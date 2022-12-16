@@ -1,4 +1,4 @@
-const $versi = 'v0.2';
+const $versi = 'v0.a';
 const $caches = [
 	'./index.html','./style.css','./script.js','./logo.png','./icon.png','./1.jpg','./2.jpg','./3.jpg','./4.jpg','./5.jpg','./6.jpg','./7.jpg','./harga.jpg','./erwin.jpg','./ryan.jpg','./Poppins-Regular.woff'
 ];

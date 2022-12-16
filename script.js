@@ -1,8 +1,8 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.userAgent.indexOf("Android") != -1 && navigator.userAgent.match(/chrome|chromium|crios/i) != -1){
+if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.userAgent.indexOf("Android") != -1 && navigator.userAgent.match(/chrome) != -1){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
-  if(navigator.userAgent.match(/chrome|chromium|crios/i) != -1){
+  if(navigator.userAgent.match(/chrome) != -1){
   }else{
     alert('Disarankan menggunakan Google Chrome');
   }

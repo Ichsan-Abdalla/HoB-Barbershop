@@ -1,4 +1,4 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true){
+if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.userAgent.match(/chrome) != -1){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');

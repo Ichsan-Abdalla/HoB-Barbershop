@@ -99,13 +99,12 @@ let a;
 function waktu(){
   let $jam = new Date().getHours();
   let $menit = new Date().getMinutes();
-  if($jam.length < 2){
+  if($jam < 10){
     $jam = '0'+$jam;
   }
-  if($menit.length < 2){
+  if($menit < 10){
     $menit = '0'+$menit;
   }
-  
   return [$jam,$menit];
 
 }
@@ -148,7 +147,7 @@ function update(){
         situasi1.textContent = 'Jumlah orang yg menunggu giliran: '+e.data.situasi[1];
       }
       
-      let $waktu = waktu();
+      const $waktu = waktu();
       
       jam.textContent = '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB';
     }};
@@ -159,7 +158,7 @@ function update(){
 }
 
 uPdate.onclick = ()=>{
-  let $waktu = waktu();
+  const $waktu = waktu();
   if(uPdate.textContent != 'Perbarui'){
     return;
   }else if(jam.textContent == '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB'){

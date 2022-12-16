@@ -1,6 +1,7 @@
 {
+	"author": "Ichsan Abdalla",
 	"name": "HoB Barbershop",
-	"short_name": "hobershop",
+	"short_name": "HoB Barbershop",
 	"orientation": "portrait",
 	"start_url": ".",
 	"display": "standalone",

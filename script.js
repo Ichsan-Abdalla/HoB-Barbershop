@@ -1,5 +1,5 @@
-if(window.matchMedia('(display-mode: standalone)').matches == true && 'getInstalledRelatedApps' in navigator){
-  iNstall.style.display != 'flex';
+if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstalledRelatedApps' in navigator){
+  iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
   if('getInstalledRelatedApps' in navigator){

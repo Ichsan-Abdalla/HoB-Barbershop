@@ -1,9 +1,11 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.userAgent.match(/chrome) != -1){
+if(window.matchMedia('(display-mode: standalone)').matches != true && 'serviceWorker' in navigator){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
-  alert('Disarankan menggunakan Google Chrome');
-  
+  if(navigator.userAgent.match(/chrome|chromium|crios/i) != -1){
+  }else{
+    alert('Disarankan menggunakan Google Chrome');
+  }
   window.addEventListener('popstate', ()=>{
     if(pOto.classList.contains('a') == true){
       document.querySelector('.poto').classList.remove('a');

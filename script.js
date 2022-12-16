@@ -2,7 +2,7 @@ if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstal
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
-  if(getInstalledRelatedApps' in navigator){
+  if('getInstalledRelatedApps' in navigator){
   }else{
     alert('Disarankan menggunakan Google Chrome untuk dapat menginstal aplikasi');
   }

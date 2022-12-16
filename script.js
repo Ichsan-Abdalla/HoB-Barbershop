@@ -1,11 +1,9 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true && navigator.userAgent.indexOf("Android") != -1 && navigator.userAgent.match(/chrome) != -1){
+if(window.matchMedia('(display-mode: standalone)').matches != true){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
-  if(navigator.userAgent.match(/chrome) != -1){
-  }else{
-    alert('Disarankan menggunakan Google Chrome');
-  }
+  alert('Disarankan menggunakan Google Chrome');
+  
   window.addEventListener('popstate', ()=>{
     if(pOto.classList.contains('a') == true){
       document.querySelector('.poto').classList.remove('a');

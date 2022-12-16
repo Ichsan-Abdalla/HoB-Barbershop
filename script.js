@@ -2,9 +2,9 @@ if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstal
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
-  if(navigator.userAgent.match(/chrome|chromium|crios/i) != -1){
+  if(getInstalledRelatedApps' in navigator){
   }else{
-    alert('Disarankan menggunakan Google Chrome');
+    alert('Disarankan menggunakan Google Chrome untuk dapat menginstal aplikasi');
   }
   window.addEventListener('popstate', ()=>{
     if(pOto.classList.contains('a') == true){

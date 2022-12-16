@@ -17,7 +17,7 @@
     font-family: 'mouw';
     font-style: normal;
     font-weight: normal;
-    src: url(Mouw-PK9er.woff) format(woff);
+    src: url('Mouw-PK9er.woff') format(woff);
 }
 
 body{

@@ -1,4 +1,4 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstalledRelatedApps' in navigator){
+if(window.matchMedia('(display-mode: standalone)').matches == true && 'getInstalledRelatedApps' in navigator){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');
@@ -48,7 +48,7 @@ function installed(){
     a = undefined;
     iNstallbtn.classList.remove('a');
     iNstallbtn.textContent = 'Buka Aplikasi';
-    alert('Aplikasi berhasil di instal ');
+    alert('Aplikasi berhasil di Instal');
   }
 }
 
@@ -96,6 +96,20 @@ fOoter.onclick = e=>{
 let w;
 let a;
 
+function waktu(){
+  let $jam = new Date().getHours();
+  let $menit = new Date().getMinutes();
+  if($jam.length < 2){
+    $jam = '0'+$jam;
+  }
+  if($menit.length < 2){
+    $menit = '0'+$menit;
+  }
+  
+  return [$jam,$menit];
+
+}
+
 function update(){
   if(typeof(Worker) != 'undefined') {
     if(typeof(w) == 'undefined') {
@@ -134,7 +148,9 @@ function update(){
         situasi1.textContent = 'Jumlah orang yg menunggu giliran: '+e.data.situasi[1];
       }
       
-      jam.textContent = '*Data ini diperbarui pada pukul '+new Date().getHours()+':'+new Date().getMinutes()+'WIB';
+      let $waktu = waktu();
+      
+      jam.textContent = '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB';
     }};
   
   }else{
@@ -143,9 +159,10 @@ function update(){
 }
 
 uPdate.onclick = ()=>{
+  let $waktu = waktu();
   if(uPdate.textContent != 'Perbarui'){
     return;
-  }else if(jam.textContent == '*Data ini diperbarui pada pukul '+new Date().getHours()+':'+new Date().getMinutes()+'WIB'){
+  }else if(jam.textContent == '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB'){
     alert('Pembaruan baru saja dilakukan.\nTunggu selama 1 menit.');
     return;
   }
@@ -221,7 +238,8 @@ window.addEventListener('offline', ()=>{
 window.addEventListener('online', ()=>{
   uPdate.click();
 });
-  
+
+
  
 
   

@@ -1,17 +1,15 @@
 {
-	"author": "Ichsan Abdalla",
 	"name": "HoB Barbershop",
-	"short_name": "HoB Barbershop",
+	"short_name": "hobershop",
 	"orientation": "portrait",
 	"start_url": ".",
-	"scope": ".",
 	"display": "standalone",
 	"background_color": "white",
 	"theme_color": "#4169E1",
 	"icons": [
 		{
 			"src": "icon.png",
-			"sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+			"sizes": "48x48 72x72 96x96 144x144 192x192 256x256 512x512",
 			"type": "image/png"
 		}
 	],

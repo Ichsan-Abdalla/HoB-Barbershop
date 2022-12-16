@@ -1,4 +1,4 @@
-if(window.matchMedia('(display-mode: standalone)').matches != true && 'serviceWorker' in navigator){
+if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstalledRelatedApps' in navigator){
   iNstall.style.display = 'flex';
 }else{
   cOntainer.classList.remove('a');

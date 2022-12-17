@@ -105,6 +105,7 @@ function waktu(){
   if($menit < 10){
     $menit = '0'+$menit;
   }
+
   return [$jam,$menit];
 
 }
@@ -147,7 +148,7 @@ function update(){
         situasi1.textContent = 'Jumlah orang yg menunggu giliran: '+e.data.situasi[1];
       }
       
-      const $waktu = waktu();
+      let $waktu = waktu();
       
       jam.textContent = '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB';
     }};
@@ -158,7 +159,7 @@ function update(){
 }
 
 uPdate.onclick = ()=>{
-  const $waktu = waktu();
+  let $waktu = waktu();
   if(uPdate.textContent != 'Perbarui'){
     return;
   }else if(jam.textContent == '*Data ini diperbarui pada pukul '+$waktu[0]+':'+$waktu[1]+' WIB'){

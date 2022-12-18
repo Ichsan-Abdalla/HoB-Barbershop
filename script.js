@@ -227,8 +227,12 @@ function today(){
   const arrHari = ['Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu','Minggu'];
       arrBulan = ['Januari', 'Februari', 'Maret', 'April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
       
-  return arrHari[new Date().getDay()-1]+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
-  return arrHari[new Date().getDay()-1]+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
+  if(new Date().getDay() == 0){
+    const $hari = "Minggu";
+  }else{
+    const $hari = arrHari[new Date().getDay()-1];
+  }
+  return $hari+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
 }
 
 window.addEventListener('offline', ()=>{

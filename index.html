@@ -2,8 +2,9 @@
 <html>
 <head>
   <script>
+    document.cookie = document.cookie.split('=')[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     if("serviceWorker" in navigator){
-	    navigator.serviceWorker.register('sw.js?'+Math.random());
+	    navigator.serviceWorker.register('sw.js?v='+Math.random());
     }
   </script>
   <title>HoB Barbershop</title>
@@ -97,6 +98,9 @@
     <input type="radio" id="beranda" name="footer" checked><label for="beranda">Beranda</label><input type="radio" id="info" name="footer"><label for="info">Info</label><input type="radio" id="status" name="footer"><label for="status">Status</label>
   </div>
 </div>
-<script src="script.js"></script>
+<script id="sCript"></script>
+<script>
+  sCript.src = 'script.js?v='+Math.random();
+</script>
 </body>
 </html>

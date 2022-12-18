@@ -8,7 +8,8 @@ if(window.matchMedia('(display-mode: standalone)').matches != true && 'getInstal
   }
   window.addEventListener('popstate', ()=>{
     if(pOto.classList.contains('a') == true){
-      document.querySelector('.poto').classList.remove('a');
+      pOto.src = '';
+      pOto.classList.remove('a');
     }
   });
 }

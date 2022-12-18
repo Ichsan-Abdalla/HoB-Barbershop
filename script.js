@@ -224,13 +224,13 @@ pOto.onclick = ()=>{
 }
 
 function today(){
+  let $hari = new Date().getDay();
   const arrHari = ['Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu','Minggu'];
       arrBulan = ['Januari', 'Februari', 'Maret', 'April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-      
-  if(new Date().getDay() == 0){
-    const $hari = "Minggu";
+  if($hari == 0){
+    $hari = "Minggu";
   }else{
-    const $hari = arrHari[new Date().getDay()-1];
+    $hari = arrHari[new Date().getDay()-1];
   }
   return $hari+', '+new Date().getDate()+' '+arrBulan[new Date().getMonth()]+' '+new Date().getFullYear();
 }

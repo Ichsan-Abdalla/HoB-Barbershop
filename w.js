@@ -1,5 +1,5 @@
 postMessage({
-  'kapster':[0,1],
-  'situasi':[1,6],
+  'kapster':[0,0],
+  'situasi':[1,0],
   'tutup':[0,'']
 });
